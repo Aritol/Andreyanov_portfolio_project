@@ -1,15 +1,16 @@
 <template>
   <div>
     <div class="container">
-      <!-- <side-menu /> -->
       <div class="side_img_container">
         <img
-          src="@/assets/images/side_img.png
+          src="@/assets/images/side_image_reworked.png
         "
           alt=""
         />
       </div>
-      <categories-grid />
+      <div class="categories_container">
+        <categories-grid />
+      </div>
     </div>
   </div>
 </template>
@@ -21,7 +22,6 @@ export default {
   name: "Home",
 
   components: {
-    // SideMenu,
     CategoriesGrid,
   },
 };
@@ -33,5 +33,16 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  padding-top: 15px;
+
+  .categories_container {
+    margin-left: 15px;
+  }
+
+  .side_img_container {
+    img {
+      width: 236px;
+    }
+  }
 }
 </style>

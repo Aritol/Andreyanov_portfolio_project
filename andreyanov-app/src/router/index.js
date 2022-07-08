@@ -4,7 +4,7 @@ import Home from "@/pages/Home";
 import ContactPage from "@/pages/EditPage";
 import Products from "@/pages/Products";
 import About from "@/pages/About";
-import Review from "@/pages/Review";
+import DeliveryAndPayments from "@/pages/DeliveryAndPayments";
 
 import EditPage from "@/pages/EditPage";
 import AddPage from "@/pages/AddPage";
@@ -16,7 +16,11 @@ const routes = [
   { path: "/contact", component: ContactPage, name: "contactPage" },
   { path: "/products", component: Products, name: "productsPage" },
   { path: "/about", component: About, name: "about" },
-  { path: "/review", component: Review, name: "reviewPage" },
+  {
+    path: "/delivery",
+    component: DeliveryAndPayments,
+    name: "deliveryAndPayments",
+  },
 
   { path: "/edit/:id", component: EditPage, name: "editPage" },
   { path: "/add", component: AddPage, name: "addPage" },

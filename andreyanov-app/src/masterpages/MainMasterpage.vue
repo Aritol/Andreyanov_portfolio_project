@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="header_autoriztion">
+      <div class="header_autoriztion_container">
+        <div class="buttons_container"></div>
+      </div>
+    </div>
     <div v-if="isLoading">Loading......</div>
     <div v-if="isError">Error!!!!</div>
 

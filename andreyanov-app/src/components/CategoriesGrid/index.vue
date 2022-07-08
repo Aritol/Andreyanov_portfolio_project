@@ -114,34 +114,38 @@ export default {
 
 .container {
   .main_wrapper {
-    margin-top: 15px;
     .title_container {
       background: #069534;
       width: 100%;
-      max-width: 600px;
+      max-width: 1000px;
       h1 {
         color: #fff;
         font-size: 20px;
-        padding: 8px 0px 8px 30px;
+        padding: 8px 0px 8px 34px;
       }
     }
 
     .category_blocks_container {
+      padding-bottom: 20px;
+
       background: #fff;
       .category_blocks {
+        display: flex;
+        flex-wrap: wrap;
         li {
-          display: inline-block;
+          margin: 0 auto;
+          padding: 20px 10px 5px 0px;
         }
         .block_content {
-          margin: 10px 4px 20px 30px;
+          // margin: 10px 4px 20px 30px;
           width: 100%;
-          max-width: 300px;
+          max-width: 250px;
           img {
-            width: 250px;
+            width: 260px;
           }
           p {
             color: #046423;
-            padding-top: 14px;
+            padding-top: 12px;
             font-weight: bold;
 
             &:hover {

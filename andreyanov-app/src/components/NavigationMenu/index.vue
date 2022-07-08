@@ -35,6 +35,7 @@
                   <router-link to="/products"
                     ><li class="menu_item_for_dropdown">
                       Продукти
+                      <img src="@/assets/icons/down_arrow_white.png" alt="" />
                       <ul class="nav_sub_menu">
                         <router-link to="/category/legkovi"
                           ><li>
@@ -68,7 +69,7 @@
                       </ul>
                     </li></router-link
                   >
-                  <router-link to="/review"
+                  <router-link to="/delivery"
                     ><li>Доставка та оплата</li></router-link
                   >
 
@@ -186,6 +187,13 @@ export default {
         display: block;
 
         box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+      }
+
+      .menu_item_for_dropdown {
+        img {
+          width: 20px;
+          padding-top: 2px;
+        }
       }
     }
   }

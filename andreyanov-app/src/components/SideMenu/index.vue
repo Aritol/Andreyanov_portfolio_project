@@ -107,8 +107,10 @@ export default {
 .container {
   background-color: #fff;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
-  width: 280px;
-  min-width: 280px;
+  width: 100%;
+  max-width: 270px;
+
+  min-width: 236px;
 
   .main_wrapper {
     padding: 15px 10px;

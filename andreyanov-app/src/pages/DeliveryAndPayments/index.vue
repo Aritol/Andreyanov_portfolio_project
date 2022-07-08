@@ -2,11 +2,16 @@
   <div>
     <div class="container">
       <div class="main_wrapper">
-        <div class="side_menu_container">
+        <div class="side_container">
           <side-menu />
         </div>
-        <div class="categories_grid_container">
-          <categories-grid />
+        <div class="main_container">
+          <div class="main_container_wrapper">
+            <div class="title">
+              <h2>Умови доставки та оплати</h2>
+            </div>
+            <div class="content">asdasd</div>
+          </div>
         </div>
       </div>
     </div>
@@ -15,13 +20,11 @@
 
 <script>
 import SideMenu from "@/components/SideMenu";
-import CategoriesGrid from "@/components/CategoriesGrid";
 export default {
-  name: "Product",
+  name: "DeliveryAndPayment",
 
   components: {
     SideMenu,
-    CategoriesGrid,
   },
 };
 </script>
@@ -31,15 +34,18 @@ export default {
 @import "@/assets/styles/null.scss";
 
 .container {
+  background: #fff0e5;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  .main_wrapper {
-    display: flex;
-    margin-top: 15px;
 
-    .categories_grid_container {
-      padding-left: 15px;
+  .main_wrapper {
+    margin-top: 15px;
+    display: flex;
+
+    .main_container {
+      background: #fff;
+      margin-left: 20px;
     }
   }
 }
