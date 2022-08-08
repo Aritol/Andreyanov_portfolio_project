@@ -8,91 +8,72 @@
         <div class="category_blocks_container">
           <ul class="category_blocks">
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img
-                    src="@/assets/category_img/legkovi_automobili_cat.jpg"
-                    alt=""
-                /></router-link>
-                <router-link to=""
-                  ><p>Моторні масла для легкових автомобилів</p></router-link
-                >
+              <div class="block_content" @click="ToLegkovi">
+                <img
+                  src="@/assets/category_img/legkovi_automobili_cat.jpg"
+                  alt=""
+                />
+                <p>Моторні масла для легкових автомобилів</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img
-                    src="@/assets/category_img/commerce_automobili_cat.jpg"
-                    alt=""
-                /></router-link>
-                <router-link to=""
-                  ><p>Моторні масла для комерційних автомобілів</p></router-link
-                >
+              <div class="block_content" @click="ToCommerce">
+                <img
+                  src="@/assets/category_img/commerce_automobili_cat.jpg"
+                  alt=""
+                />
+                <p>Моторні масла для комерційних автомобілів</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img src="@/assets/category_img/gidravlica_cat.jpg" alt=""
-                /></router-link>
-                <router-link to=""><p>Гідравлічна масла</p></router-link>
+              <div class="block_content" @click="ToHydraulics">
+                <img src="@/assets/category_img/gidravlica_cat.jpg" alt="" />
+                <p>Гідравлічна масла</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img
-                    src="@/assets/category_img/transmissionnoe-maslo_cat.jpg"
-                    alt=""
-                /></router-link>
-                <router-link to=""><p>Трансмісійне масло</p></router-link>
+              <div class="block_content" @click="ToTransmisson">
+                <img
+                  src="@/assets/category_img/transmissionnoe-maslo_cat.jpg"
+                  alt=""
+                />
+                <p>Трансмісійне масло</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img src="@/assets/category_img/antifriz_cat.jpg" alt=""
-                /></router-link>
-                <router-link to=""><p>Охолоджуючі рідини</p></router-link>
+              <div class="block_content" @click="ToCold">
+                <img src="@/assets/category_img/antifriz_cat.jpg" alt="" />
+                <p>Охолоджуючі рідини</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img src="@/assets/category_img/moto_cat.jpg" alt=""
-                /></router-link>
-                <router-link to=""><p>Масла для мото групи</p></router-link>
+              <div class="block_content" @click="ToMotoGroup">
+                <img src="@/assets/category_img/moto_cat.jpg" alt="" />
+                <p>Масла для мото групи</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img
-                    src="@/assets/category_img/sadove_obladnannya_cat.jpg"
-                    alt=""
-                /></router-link>
-                <router-link to=""
-                  ><p>Масла для садового обладнання</p></router-link
-                >
+              <div class="block_content" @click="ToGarden">
+                <img
+                  src="@/assets/category_img/sadove_obladnannya_cat.jpg"
+                  alt=""
+                />
+                <p>Масла для садового обладнання</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img
-                    src="@/assets/category_img/smazochnye_materialy_cat.jpg"
-                    alt=""
-                /></router-link>
-                <router-link to=""><p>Мастильні матеріали</p></router-link>
+              <div class="block_content" @click="ToLubricants">
+                <img
+                  src="@/assets/category_img/smazochnye_materialy_cat.jpg"
+                  alt=""
+                />
+                <p>Мастильні матеріали</p>
               </div>
             </li>
             <li>
-              <div class="block_content">
-                <router-link to=""
-                  ><img src="@/assets/category_img/autohimiya_cat.jpg" alt=""
-                /></router-link>
-                <router-link to=""><p>Автохімія</p></router-link>
+              <div class="block_content" @click="ToAutohim">
+                <img src="@/assets/category_img/autohimiya_cat.jpg" alt="" />
+                <p>Автохімія</p>
               </div>
             </li>
           </ul>
@@ -105,6 +86,64 @@
 <script>
 export default {
   name: "CategoriesGrid",
+
+  methods: {
+    ToLegkovi() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "legkovi" },
+      });
+    },
+
+    ToCommerce() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "commerce" },
+      });
+    },
+    ToHydraulics() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "hydraulics" },
+      });
+    },
+    ToTransmisson() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "transmisson" },
+      });
+    },
+    ToCold() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "cold" },
+      });
+    },
+    ToMotoGroup() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "motoGroup" },
+      });
+    },
+    ToGarden() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "garden" },
+      });
+    },
+    ToLubricants() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "lubricants" },
+      });
+    },
+    ToAutohim() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "autohim" },
+      });
+    },
+  },
 };
 </script>
 
@@ -113,6 +152,7 @@ export default {
 @import "@/assets/styles/null.scss";
 
 .container {
+  padding-bottom: 60px;
   .main_wrapper {
     .title_container {
       background: #069534;
@@ -121,7 +161,7 @@ export default {
       h1 {
         color: #fff;
         font-size: 20px;
-        padding: 8px 0px 8px 34px;
+        padding: 8px 0px 8px 29px;
       }
     }
 
@@ -142,6 +182,7 @@ export default {
           max-width: 250px;
           img {
             width: 260px;
+            cursor: pointer;
           }
           p {
             color: #046423;
@@ -150,6 +191,7 @@ export default {
 
             &:hover {
               color: #069534;
+              cursor: pointer;
             }
           }
         }

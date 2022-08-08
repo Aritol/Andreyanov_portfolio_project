@@ -1,25 +1,48 @@
 <template>
   <div>
+    <div
+      class="popup_container"
+      v-if="schedulePopupVisible || writeUsPopupVisible"
+    >
+      <schedule-popup
+        v-if="schedulePopupVisible"
+        @onSchedulePopupClose="onSchedulePopupClose"
+      />
+      <write-us-popup
+        v-if="writeUsPopupVisible"
+        @onWriteUsPopupClose="onWriteUsPopupClose"
+      />
+    </div>
     <div class="container">
       <div class="main_wrapper">
         <div class="menu_container">
           <h2>Меню</h2>
           <ul>
-            <router-link to=""
+            <router-link to="/products/legkovi"
               ><li>Моторні масла для легкових автомобілів</li></router-link
             >
-            <router-link to=""
+            <router-link to="/products/commerce"
               ><li>Моторні масла для комерційних автомобілів</li></router-link
             >
-            <router-link to=""><li>Масло гідравлічне</li></router-link>
-            <router-link to=""><li>Трансмісійне масло</li></router-link>
-            <router-link to=""><li>Охолоджуючі рідини</li></router-link>
-            <router-link to=""><li>Масло для мото групи</li></router-link>
-            <router-link to=""
+            <router-link to="/products/hydraulics"
+              ><li>Масло гідравлічне</li></router-link
+            >
+            <router-link to="/products/transmisson"
+              ><li>Трансмісійне масло</li></router-link
+            >
+            <router-link to="/products/cold"
+              ><li>Охолоджуючі рідини</li></router-link
+            >
+            <router-link to="/products/motoGroup"
+              ><li>Масло для мото групи</li></router-link
+            >
+            <router-link to="/products/garden"
               ><li>Масло для садового обладнання</li></router-link
             >
-            <router-link to=""><li>Мастильні матеріали</li></router-link>
-            <router-link to=""><li>Автохімія</li></router-link>
+            <router-link to="/products/lubricants"
+              ><li>Мастильні матеріали</li></router-link
+            >
+            <router-link to="/products/autohim"><li>Автохімія</li></router-link>
           </ul>
         </div>
         <div class="contact_container">
@@ -45,6 +68,7 @@
           <button
             @mouseover="writeUsBtnHover = true"
             @mouseleave="writeUsBtnHover = false"
+            @click="showWriteUsPopup"
           >
             <img
               v-if="writeUsBtnHover"
@@ -57,6 +81,7 @@
           <button
             @mouseover="cartBtnHover = true"
             @mouseleave="cartBtnHover = false"
+            @click="cartBtnClick()"
           >
             <img
               v-if="cartBtnHover"
@@ -72,6 +97,7 @@
           <button
             @mouseover="clockBtnHover = true"
             @mouseleave="clockBtnHover = false"
+            @click="clockBtnClick()"
           >
             <img
               v-if="clockBtnHover"
@@ -88,14 +114,99 @@
 </template>
 
 <script>
+import schedulePopup from "@/components/popups/schedulePopup.vue";
+import WriteUsPopup from "@/components/popups/writeUsPopup";
 export default {
   name: "SideMenu",
+
+  components: {
+    schedulePopup,
+    WriteUsPopup,
+  },
   data() {
     return {
       writeUsBtnHover: false,
       cartBtnHover: false,
       clockBtnHover: false,
+
+      schedulePopupVisible: false,
+      writeUsPopupVisible: false,
     };
+  },
+
+  methods: {
+    onSchedulePopupClose() {
+      this.schedulePopupVisible = false;
+    },
+
+    showWriteUsPopup() {
+      this.writeUsPopupVisible = true;
+    },
+    onWriteUsPopupClose() {
+      this.writeUsPopupVisible = false;
+    },
+    cartBtnClick() {
+      this.$router.push({ name: "cart" });
+    },
+    clockBtnClick() {
+      this.schedulePopupVisible = true;
+    },
+
+    ToLegkovi() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "legkovi" },
+      });
+    },
+
+    ToCommerce() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "commerce" },
+      });
+    },
+    ToHydraulics() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "hydraulics" },
+      });
+    },
+    ToTransmisson() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "transmisson" },
+      });
+    },
+    ToCold() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "cold" },
+      });
+    },
+    ToMotoGroup() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "motoGroup" },
+      });
+    },
+    ToGarden() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "garden" },
+      });
+    },
+    ToLubricants() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "lubricants" },
+      });
+    },
+    ToAutohim() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "autohim" },
+      });
+    },
   },
 };
 </script>
@@ -103,6 +214,15 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/null.scss";
 @import "@/assets/styles/fonts.scss";
+
+.popup_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
 
 .container {
   background-color: #fff;

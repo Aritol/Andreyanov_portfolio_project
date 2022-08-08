@@ -39,6 +39,9 @@
       <template #header>
         <navigation-menu />
       </template>
+      <template #footer>
+        <Footer />
+      </template>
     </main-masterpage>
   </div>
 </template>
@@ -46,17 +49,33 @@
 <script>
 import MainMasterpage from "@/masterpages/MainMasterpage.vue";
 import NavigationMenu from "@/components/NavigationMenu";
+import Footer from "@/components/Footer";
+import { mapActions } from "vuex";
 export default {
   name: "App",
   components: {
     MainMasterpage,
     NavigationMenu,
+    Footer,
+  },
+  methods: {
+    ...mapActions("cart", ["loadFromLocalStorage"]),
+  },
+
+  async mounted() {
+    await this.loadFromLocalStorage();
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "./assets/styles/null.scss";
+
+html {
+  body {
+    margin-top: 0px;
+  }
+}
 
 .main {
   background-color: #fff0e5;

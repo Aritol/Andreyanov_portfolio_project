@@ -8,43 +8,65 @@ const sendJSONResponse = (res, status, content) => {
 };
 
 module.exports.getList = function (req, res) {
-  const searchObj = req.query.searchParams || {};
+  // const searchObj = {};
+  const searchObj = { category: req.params.category } || {};
+  // console.log("req.params.category");
+  // console.log(req.params.category);
 
-  ProductModel.find(searchObj)
-    .populate("owner")
-    .exec(function (err, books) {
-      if (err)
-        return sendJSONResponse(res, 500, {
-          success: false,
-          err: { msg: "Fetch faild!" },
-        });
+  // console.log("searchObj");
+  // console.log(searchObj);
 
-      sendJSONResponse(res, 200, { success: true, data: books });
-    });
+  // ProductModel.find(searchObj).exec(function (err, products) {
+  //   if (err)
+  //     return sendJSONResponse(res, 500, {
+  //       success: false,
+  //       err: { msg: "Fetch faild!" },
+  //     });
+
+  //   sendJSONResponse(res, 200, { success: true, data: products });
+
+  //   // console.log(products);
+  // });
+  ProductModel.find(searchObj, function (err, products) {
+    if (err)
+      return sendJSONResponse(res, 500, {
+        success: false,
+        err: { msg: "Fetch faild!" },
+      });
+    else {
+      sendJSONResponse(res, 200, { success: true, data: products });
+      console.log("products.name");
+
+      console.log(products.name);
+    }
+  });
 };
 
 module.exports.add = function (req, res, next) {
   let num = 0;
   let product;
-  console.log("req.body");
-  console.log(req.body);
+
   const form = formidable({ multiples: true });
   form.parse(req, (err, fields, files) => {
     if (err) {
       next(err);
       return;
     }
-    console.log("files.photo");
-    console.log(files.photo);
+    let separetedLicense = [];
+    separetedLicense = fields.license.split(",");
     product = new ProductModel({
       name: fields.name,
       availability: fields.availability,
-      price: parseFloat(fields.price),
-      description: fields.description,
+      price: parseInt(fields.price),
+      descriptionFirstParagraph: fields.descriptionFirstParagraph,
+      descriptionSecondParagraph: fields.descriptionSecondParagraph,
       photo: {
         data: fs.readFileSync(files.photo.filepath),
         contentType: files.photo.mimetype,
       },
+      category: fields.category,
+      characteristics: fields.characteristics,
+      license: separetedLicense,
     });
   });
   form.on("end", function (d) {
@@ -77,13 +99,18 @@ module.exports.update = function (req, res, next) {
       next(err);
       return;
     }
-
+    let separetedLicense = [];
+    separetedLicense = fields.license.split(",");
     //Створення об’єкта моделі
     product = {
       name: fields.name,
       availability: fields.availability,
       price: parseFloat(fields.price),
-      description: fields.description,
+      descriptionFirstParagraph: fields.descriptionFirstParagraph,
+      descriptionSecondParagraph: fields.descriptionSecondParagraph,
+      category: fields.category,
+      characteristics: fields.characteristics,
+      license: separetedLicense,
     };
     req.body.id = fields._id;
     req.body.product = product;
@@ -162,18 +189,34 @@ module.exports.delete = function (req, res) {
   });
 };
 
+// module.exports.getById = function (req, res) {
+//   //Пошук об"єкта-книги за id
+//   ProductModel.findById(req.params.id)
+//     .populate("owner")
+//     .exec(function (err, searchProduct) {
+//       if (err) {
+//         sendJSONResponse(res, 500, {
+//           success: false,
+//           err: { msg: "Find product faild!" },
+//         });
+//         return;
+//       }
+//       sendJSONResponse(res, 200, { success: true, data: searchProduct });
+//     });
+// };
+
 module.exports.getById = function (req, res) {
   //Пошук об"єкта-книги за id
-  ProductModel.findById(req.params.id)
-    .populate("owner")
-    .exec(function (err, searchProduct) {
-      if (err) {
-        sendJSONResponse(res, 500, {
-          success: false,
-          err: { msg: "Find product faild!" },
-        });
-        return;
-      }
-      sendJSONResponse(res, 200, { success: true, data: searchProduct });
-    });
+  console.log("norm");
+  console.log(req.params.id);
+  ProductModel.findById(req.params.id, function (err, searchProduct) {
+    if (err) {
+      sendJSONResponse(res, 500, {
+        success: false,
+        err: { msg: "Find product faild!" },
+      });
+      return;
+    }
+    sendJSONResponse(res, 200, { success: true, data: searchProduct });
+  });
 };

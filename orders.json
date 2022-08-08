@@ -1,0 +1,273 @@
+[{
+  "_id": {
+    "$oid": "62e6d8dfe76df2fa42c8d210"
+  },
+  "userName": "as",
+  "userSurname": "as",
+  "userPhoneNumber": "as",
+  "userMail": "as",
+  "address": "as",
+  "message": "as",
+  "status": "Відмінений",
+  "totalPrice": 965,
+  "date": [
+    {
+      "day": 31,
+      "mouth": 6,
+      "year": 2022
+    }
+  ],
+  "orderList": [
+    {
+      "product": {
+        "$oid": "62c03d0e827bbde8cd54afde"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e6d8dfe76df2fa42c8d211"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81b3c89128b4fcfdc298c"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e6d8dfe76df2fa42c8d212"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81d2c89128b4fcfdc298d"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e6d8dfe76df2fa42c8d213"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e6de2fe76df2fa42c8d264"
+  },
+  "userName": "max",
+  "userSurname": "max",
+  "userPhoneNumber": "max",
+  "userMail": "max",
+  "address": "max",
+  "message": "max",
+  "status": "В обробці",
+  "totalPrice": 1085,
+  "date": [
+    {
+      "day": 31,
+      "mouth": 6,
+      "year": 2022
+    }
+  ],
+  "orderList": [
+    {
+      "product": {
+        "$oid": "62c03d0e827bbde8cd54afde"
+      },
+      "quantity": 7,
+      "_id": {
+        "$oid": "62e6de2fe76df2fa42c8d265"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e7d31df74f13407c3d8aaf"
+  },
+  "userName": "2",
+  "userSurname": "2",
+  "userPhoneNumber": "2",
+  "userMail": "2",
+  "address": "2",
+  "message": "2",
+  "status": "В обробці",
+  "totalPrice": 11915,
+  "date": [
+    {
+      "day": 1,
+      "mouth": 7,
+      "year": 2022
+    }
+  ],
+  "orderList": [
+    {
+      "product": {
+        "$oid": "62c03d0e827bbde8cd54afde"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d31df74f13407c3d8ab0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81b3c89128b4fcfdc298c"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d31df74f13407c3d8ab1"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81d2c89128b4fcfdc298d"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d31df74f13407c3d8ab2"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81dea89128b4fcfdc298e"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d31df74f13407c3d8ab3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d85a10edb8a85b9ef1d5cc"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d31df74f13407c3d8ab4"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d85b38edb8a85b9ef1d5cd"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d31df74f13407c3d8ab5"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e7d34af74f13407c3d8ab7"
+  },
+  "userName": "2",
+  "userSurname": "2",
+  "userPhoneNumber": "2",
+  "userMail": "2",
+  "address": "2",
+  "message": "2",
+  "status": "В обробці",
+  "totalPrice": 11915,
+  "date": [
+    {
+      "day": 1,
+      "mouth": 7,
+      "year": 2022
+    }
+  ],
+  "orderList": [
+    {
+      "product": {
+        "$oid": "62c03d0e827bbde8cd54afde"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d34af74f13407c3d8ab8"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81b3c89128b4fcfdc298c"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d34af74f13407c3d8ab9"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81d2c89128b4fcfdc298d"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d34af74f13407c3d8aba"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81dea89128b4fcfdc298e"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d34af74f13407c3d8abb"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d85a10edb8a85b9ef1d5cc"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d34af74f13407c3d8abc"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d85b38edb8a85b9ef1d5cd"
+      },
+      "quantity": 1,
+      "_id": {
+        "$oid": "62e7d34af74f13407c3d8abd"
+      }
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62e7faea9b58a184a19dd5ca"
+  },
+  "userName": "testOrder",
+  "userSurname": "testOrder",
+  "userPhoneNumber": "testOrder",
+  "userMail": "testOrder",
+  "address": "testOrder",
+  "message": "testOrder",
+  "status": "Відправлено",
+  "totalPrice": 3510,
+  "date": [
+    {
+      "day": 1,
+      "mouth": 7,
+      "year": 2022
+    }
+  ],
+  "orderList": [
+    {
+      "product": {
+        "$oid": "62c03d0e827bbde8cd54afde"
+      },
+      "quantity": 2,
+      "_id": {
+        "$oid": "62e7faea9b58a184a19dd5cb"
+      }
+    },
+    {
+      "product": {
+        "$oid": "62d81dea89128b4fcfdc298e"
+      },
+      "quantity": 4,
+      "_id": {
+        "$oid": "62e7faea9b58a184a19dd5cc"
+      }
+    }
+  ],
+  "__v": 0
+}]
