@@ -158,7 +158,7 @@ export default {
     },
 
     onResponseListClick() {
-      this.$router.push({ name: "ordersPage" });
+      this.$router.push({ name: "lettersPage" });
     },
 
     ToLegkovi() {

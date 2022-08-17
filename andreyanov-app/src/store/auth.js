@@ -62,7 +62,7 @@ const store = {
         axios
           .post(apiEndpoints.user.signup, { name, email, password })
           .then(function () {
-            //   commit('setAuthData', { authData: user.data })
+            // commit('setAuthData', { authData: user.data })
             resolve(true);
           })
           .catch((err) => {
@@ -104,7 +104,6 @@ const store = {
   getters: {
     usersList: (state) => state.usersList,
     authData: (state) => state.authData,
-
     isAuthenticated: (state) => () => {
       return state.authData && new Date().getTime() < state.expiresAt;
     },

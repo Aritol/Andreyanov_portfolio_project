@@ -8,36 +8,17 @@ const sendJSONResponse = (res, status, content) => {
 };
 
 module.exports.getList = function (req, res) {
-  // const searchObj = {};
-  const searchObj = { category: req.params.category } || {};
-  // console.log("req.params.category");
-  // console.log(req.params.category);
+  const searchObj = {};
 
-  // console.log("searchObj");
-  // console.log(searchObj);
-
-  // ProductModel.find(searchObj).exec(function (err, products) {
-  //   if (err)
-  //     return sendJSONResponse(res, 500, {
-  //       success: false,
-  //       err: { msg: "Fetch faild!" },
-  //     });
-
-  //   sendJSONResponse(res, 200, { success: true, data: products });
-
-  //   // console.log(products);
-  // });
-  ProductModel.find(searchObj, function (err, products) {
+  MessageModel.find(searchObj, function (err, messages) {
     if (err)
       return sendJSONResponse(res, 500, {
         success: false,
         err: { msg: "Fetch faild!" },
       });
     else {
-      sendJSONResponse(res, 200, { success: true, data: products });
-      console.log("products.name");
-
-      console.log(products.name);
+      sendJSONResponse(res, 200, { success: true, data: messages });
+      console.log(messages);
     }
   });
 };
@@ -45,11 +26,18 @@ module.exports.getList = function (req, res) {
 module.exports.add = function (req, res, next) {
   console.log("-------------------req.body---------------");
   console.log(req.body);
+
+  let nowDate = new Date();
+  // const day =
+
   let message = new MessageModel({
     userName: req.body.userName,
     mail: req.body.mail,
     phoneNumber: req.body.phoneNumber,
     message: req.body.message,
+    day: nowDate.getDate(),
+    month: nowDate.getMonth() + 1,
+    year: nowDate.getFullYear(),
   });
   message.save(function (err, savedMessage) {
     if (err) {
@@ -63,121 +51,10 @@ module.exports.add = function (req, res, next) {
   });
 };
 
-// module.exports.add = function (req, res, next) {
-//   let num = 0;
-//   let product;
-
-//   const form = formidable({ multiples: true });
-//   form.parse(req, (err, fields, files) => {
-//     if (err) {
-//       next(err);
-//       return;
-//     }
-//     let separetedLicense = [];
-//     separetedLicense = fields.license.split(",");
-//     product = new ProductModel({
-//       name: fields.name,
-//       availability: fields.availability,
-//       price: parseInt(fields.price),
-//       descriptionFirstParagraph: fields.descriptionFirstParagraph,
-//       descriptionSecondParagraph: fields.descriptionSecondParagraph,
-//       photo: {
-//         data: fs.readFileSync(files.photo.filepath),
-//         contentType: files.photo.mimetype,
-//       },
-//       category: fields.category,
-//       characteristics: fields.characteristics,
-//       license: separetedLicense,
-//     });
-//   });
-//   form.on("end", function (d) {
-//     console.log("3333333333");
-//     num++;
-//     //Помилка модуля (викликається двічі)
-//     if (num == 1) {
-//       //Збереження моделі і відключення від бази даних
-//       product.save(function (err, savedProduct) {
-//         if (err) {
-//           sendJSONResponse(res, 500, {
-//             success: false,
-//             err: { msg: "Saving faild!" },
-//           });
-//           return;
-//         }
-//         sendJSONResponse(res, 201, { success: true, data: savedProduct });
-//       });
-//     }
-//   });
-// };
-
-// module.exports.update = function (req, res, next) {
-//   let num = 0;
-//   let product;
-//   const form = formidable({ multiples: true });
-//   form.parse(req, (err, fields, files) => {
-//     console.log("111111");
-//     if (err) {
-//       next(err);
-//       return;
-//     }
-//     let separetedLicense = [];
-//     separetedLicense = fields.license.split(",");
-//     //Створення об’єкта моделі
-//     product = {
-//       name: fields.name,
-//       availability: fields.availability,
-//       price: parseFloat(fields.price),
-//       descriptionFirstParagraph: fields.descriptionFirstParagraph,
-//       descriptionSecondParagraph: fields.descriptionSecondParagraph,
-//       category: fields.category,
-//       characteristics: fields.characteristics,
-//       license: separetedLicense,
-//     };
-//     req.body.id = fields._id;
-//     req.body.product = product;
-//     console.log("req.body.id");
-//     console.log(req.body.id);
-//     console.log("req.body.product");
-//     console.log(req.body.product);
-//     if (files.photo.originalFilename) {
-//       //Якщо надіслано нове фото, то змінюємо поле фото
-//       product.photo = {
-//         data: fs.readFileSync(files.photo.filepath),
-//         contentType: files.photo.mimetype,
-//       };
-//     }
-//   });
-//   form.on("end", function (d) {
-//     console.log("3333333333");
-//     num++;
-//     //Помилка модуля (викликається двічі)
-//     if (num == 1) {
-//       //Збереження моделі і відключення від бази даних
-//       ProductModel.findByIdAndUpdate(
-//         req.body.id,
-//         req.body.product,
-//         { new: true }, //у колбек передається оновлений документ
-//         function (err) {
-//           // mongoose.disconnect()
-//           if (err) {
-//             sendJSONResponse(res, 500, {
-//               success: false,
-//               err: { msg: "Update faild!" },
-//             });
-//             return;
-//           }
-
-//           sendJSONResponse(res, 200, { success: true });
-//         }
-//       );
-//     }
-//   });
-// };
-
 module.exports.delete = function (req, res) {
   console.log("---------req.body");
   console.log(req.body);
-  ProductModel.findByIdAndDelete(req.body.id, function (err) {
+  MessageModel.findByIdAndDelete(req.body.id, function (err) {
     if (err) {
       console.log("---------err");
       console.log(err);
@@ -192,10 +69,7 @@ module.exports.delete = function (req, res) {
 };
 
 module.exports.getById = function (req, res) {
-  //Пошук об"єкта-книги за id
-  console.log("norm");
-  console.log(req.params.id);
-  ProductModel.findById(req.params.id, function (err, searchProduct) {
+  MessageModel.findById(req.params.id, function (err, searchMessage) {
     if (err) {
       sendJSONResponse(res, 500, {
         success: false,
@@ -203,6 +77,6 @@ module.exports.getById = function (req, res) {
       });
       return;
     }
-    sendJSONResponse(res, 200, { success: true, data: searchProduct });
+    sendJSONResponse(res, 200, { success: true, data: searchMessage });
   });
 };

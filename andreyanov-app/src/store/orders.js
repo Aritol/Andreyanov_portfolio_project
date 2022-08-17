@@ -24,7 +24,7 @@ const store = {
       state.orders.push(order);
     },
     deleteOrderFromList(state, orderId) {
-      state.orderss = state.orders.filter((order) => order._id !== orderId);
+      state.orders = state.orders.filter((order) => order._id !== orderId);
     },
 
     setLoading(state, data) {
@@ -162,7 +162,7 @@ const store = {
             console.log("-resData");
             console.log(resData);
             if (resData.success) {
-              commit("deleteProductFromList", id);
+              commit("deleteOrderFromList", id);
               resolve(true);
             } else throw new Error("Delete failed!");
           })

@@ -29,7 +29,7 @@
                 <div class="message_container" v-if="getError">
                   <p>Неправильний логін або пароль</p>
                 </div>
-                <button>Уввійти</button>
+                <button>Увійти</button>
               </form>
             </div>
           </div>

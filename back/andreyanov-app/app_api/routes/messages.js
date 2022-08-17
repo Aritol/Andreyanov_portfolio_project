@@ -3,19 +3,14 @@ var router = express.Router();
 
 const messagesController = require("../controllers/messages");
 
-/* GET список книг. */
-
-// router.get("/", productsController.getById);
+router.get("/:id", messagesController.getById);
 router.get("/", messagesController.getList);
 
-/* GET видалення книги за id. */
-// router.delete("/", productsController.delete);
+router.delete("/", messagesController.delete);
 
-/* POST Створення нової книги. */
 router.post("/add", messagesController.add);
 
-// Оновлення інформації про книгу після редагування
-// router.put("/", productsController.update);
+// router.put("/", messagesController.update);
 
 /* Відображення інформації про одну книгу */
 

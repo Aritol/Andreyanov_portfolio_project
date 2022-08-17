@@ -6,6 +6,9 @@ const messageScheme = new Schema({
   mail: String,
   phoneNumber: String,
   message: String,
+  day: String,
+  month: String,
+  year: String,
 });
 //Створення моделі
 const MessageModel = mongoose.model("Message", messageScheme);

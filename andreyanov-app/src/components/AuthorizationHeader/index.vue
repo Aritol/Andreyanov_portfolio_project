@@ -4,7 +4,6 @@
       <div class="header_autoriztion_container">
         <div v-if="authorized" class="auth_user_container">
           <p>{{ authData.name }}</p>
-          <!-- <p>Max</p> -->
         </div>
         <div class="buttons_container">
           <button
@@ -12,7 +11,7 @@
             v-if="!authorized"
             @click="showAuthorizationPopup()"
           >
-            Уввійти
+            Увійти
           </button>
           <button v-if="authorized" @click="addProduct">Додати продукт</button>
           <button class="btn_signup" v-if="authorized" @click="signup">

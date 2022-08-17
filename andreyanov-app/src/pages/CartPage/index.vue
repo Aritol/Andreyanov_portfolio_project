@@ -11,7 +11,7 @@
             />
           </div>
           <div class="popup_form_container">
-            <form action="" class="user_data_form">
+            <form action="" class="user_data_form" @submit.prevent="submit">
               <div class="input_container">
                 <label for="">Ім'я<span>*</span></label>
                 <input

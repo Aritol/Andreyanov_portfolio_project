@@ -15,6 +15,9 @@ export default {
   },
   messages: {
     add: `${process.env.VUE_APP_API_URL}/messages/add`,
+    readList: `${process.env.VUE_APP_API_URL}/messages`,
+    getOrderById: (id) => `${process.env.VUE_APP_API_URL}/messages/${id}`,
+    delete: `${process.env.VUE_APP_API_URL}/messages`,
   },
   orders: {
     add: `${process.env.VUE_APP_API_URL}/orders/add`,
