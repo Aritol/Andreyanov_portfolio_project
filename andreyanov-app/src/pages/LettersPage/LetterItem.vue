@@ -1,8 +1,11 @@
 <template>
   <div>
-    <div class="popups_container">
+    <div
+      class="popups_container"
+      v-if="confirmDeletePopupVisible || deletePopupStatusVisible"
+    >
       <div class="delete_popup_container">
-        <div class="confirm_delete_popup">
+        <div class="confirm_delete_popup" v-if="confirmDeletePopupVisible">
           <div class="close_img_container">
             <img
               src="@/assets/icons/icon_close_grey.png"
@@ -13,15 +16,24 @@
           <h2>Ви впевнені що хочете видалити цей лист</h2>
           <p>(цю дію неможливо відмінити)</p>
           <button @click="onDeleteYes">Видалити</button>
-          <button @click="onCancel">Відміна</button>
+          <button class="cancel_button" @click="onConfirmDeleteClose">
+            Відміна
+          </button>
         </div>
-        <div class="delete_popup_status">
+        <div class="delete_popup_status" v-if="deletePopupStatusVisible">
+          <div class="close_img_container">
+            <img
+              src="@/assets/icons/icon_close_grey.png"
+              alt=""
+              @click="onDeleteStatusPopupClose"
+            />
+          </div>
           <h2>Лист успішно видалений</h2>
-          <button @click="onDeleteStatusOk"></button>
+          <button @click="onDeleteStatusPopupClose">Ок</button>
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="container" @click="onLetterClick">
       <div class="main_wrapper">
         <div class="letter_container">
           <div class="letter_wrapper">
@@ -69,13 +81,38 @@ export default {
   data() {
     return {
       stringMonth: "",
+      confirmDeletePopupVisible: false,
+      deletePopupStatusVisible: null,
     };
   },
 
   methods: {
     ...mapActions("message", ["deleteMessage"]),
+
     onDelete() {
-      this.deleteMessage(this.userData._id);
+      this.confirmDeletePopupVisible = true;
+    },
+
+    onConfirmDeleteClose() {
+      this.confirmDeletePopupVisible = false;
+    },
+
+    async onDeleteYes() {
+      await this.deleteMessage(this.userData._id);
+      this.confirmDeletePopupVisible = false;
+      this.deletePopupStatusVisible = true;
+    },
+
+    onDeleteStatusPopupClose() {
+      this.deletePopupStatusVisible = false;
+    },
+
+    onLetterClick() {
+      this.$emit("onLetterClick", this.userData._id);
+      this.$router.push({
+        name: "letterInfoPage",
+        params: { id: this.userData._id },
+      });
     },
   },
 
@@ -125,6 +162,112 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.popups_container {
+  color: #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.85);
+  .delete_popup_container {
+    .confirm_delete_popup {
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: #fff 0 0 0;
+      width: 100%;
+      max-width: 650px;
+      height: 400px;
+      margin-top: 280px;
+      border-radius: 2px;
+      text-align: center;
+      .close_img_container {
+        text-align: right;
+        img {
+          width: 35px;
+          cursor: pointer;
+          margin: 4px;
+        }
+      }
+
+      h2 {
+        padding: 15px;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      p {
+        font-size: 18px;
+      }
+
+      button {
+        margin-top: 170px;
+        width: 150px;
+        height: 50px;
+        background: #ed8414;
+        color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background 0.1s, border-color 0.1s, color 0.1s;
+        &:hover {
+          background: #c5630a;
+        }
+      }
+      .cancel_button {
+        margin-left: 25px;
+        background: rgb(202, 3, 3);
+        transition: background 0.1s, border-color 0.1s, color 0.1s;
+
+        &:hover {
+          background: rgb(172, 27, 27);
+        }
+      }
+    }
+
+    .delete_popup_status {
+      margin: 0 auto;
+      background: #fff;
+      box-shadow: #fff 0 0 0;
+      width: 100%;
+      max-width: 450px;
+      height: 300px;
+      margin-top: 280px;
+      border-radius: 2px;
+      text-align: center;
+
+      .close_img_container {
+        text-align: right;
+        img {
+          width: 35px;
+          cursor: pointer;
+          margin: 4px;
+        }
+      }
+
+      h2 {
+        padding: 15px;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      button {
+        margin-top: 100px;
+        width: 150px;
+        height: 50px;
+        background: #ed8414;
+        color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background 0.1s, border-color 0.1s, color 0.1s;
+        &:hover {
+          background: #c5630a;
+        }
+      }
+    }
+  }
+}
+
 .container {
   margin: 20px;
   border: 3px solid #7ebaaf;

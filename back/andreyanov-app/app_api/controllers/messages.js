@@ -52,8 +52,6 @@ module.exports.add = function (req, res, next) {
 };
 
 module.exports.delete = function (req, res) {
-  console.log("---------req.body");
-  console.log(req.body);
   MessageModel.findByIdAndDelete(req.body.id, function (err) {
     if (err) {
       console.log("---------err");

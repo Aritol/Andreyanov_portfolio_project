@@ -16,6 +16,7 @@ import ProductInfoPage from "@/pages/ProductInfoPage";
 import OrdersPage from "@/pages/OrdersPage";
 import OrderInfo from "@/pages/OrderInfo";
 import LettersPage from "@/pages/LettersPage";
+import LetterInfoPage from "@/pages/LettersPage/LetterInfoPage";
 
 const routes = [
   { path: "/", component: Home, name: "home" },
@@ -47,6 +48,11 @@ const routes = [
   { path: "/signup", component: Signup, name: "signup" },
   { path: "/OrderInformation/:id?", component: OrderInfo, name: "orderInfo" },
   { path: "/letters", component: LettersPage, name: "lettersPage" },
+  {
+    path: "/letterInfo/:id",
+    component: LetterInfoPage,
+    name: "letterInfoPage",
+  },
 ];
 
 const router = createRouter({
