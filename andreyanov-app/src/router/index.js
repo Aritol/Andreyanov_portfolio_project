@@ -3,11 +3,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "@/pages/Home";
 import ContactPage from "@/pages/ContactPage";
 import Products from "@/pages/Products";
-<<<<<<< HEAD
-import About from "@/pages/About";
-=======
 import AboutPage from "@/pages/AboutPage";
->>>>>>> 1576e637f34e031bcba0970694e953bfd9ea14dd
 import DeliveryAndPayments from "@/pages/DeliveryAndPayments";
 
 import EditPage from "@/pages/EditPage";

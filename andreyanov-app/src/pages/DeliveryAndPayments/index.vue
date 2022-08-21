@@ -13,32 +13,6 @@
             <div class="content_container">
               <div class="delivery_container">
                 <div class="delivery_info">
-<<<<<<< HEAD
-                  <h1>
-                    Доставка:
-                  </h1>
-                  <div class="delivery_info_paragraphs">
-                  <p>Ми доставимо товар до вас любим зручним для вас способом</p>
-                  <p>Доставка по <strong>Ужгороду </strong> та по всій <strong>Закарпатській області </strong> безкоштовно (терміни узгоджувються з менеджером)</p>
-                  <p>Також можлива доставка в інші області України поштовими компаніями</p>
-                  </div>
-                </div>
-                <div class="delivery_container_list">
-                  <h2>Способи доставки: </h2>
-                  <ul class="delivery_list">
-                    <li><img src="@/assets/icons/circle_icon.png" alt="">Самовивіз</li>
-                    <li><img src="@/assets/icons/circle_icon.png" alt="">Нова Пошта</li>
-                    <li><img src="@/assets/icons/circle_icon.png" alt="">Delivery</li>
-                    <li><img src="@/assets/icons/circle_icon.png" alt="">Justin</li>
-                    <li><img src="@/assets/icons/circle_icon.png" alt="">Укрпошта</li>
-                  </ul>
-                </div>
-                <div class="delivery_list_images_container">
-                  <div class="delivery_list_image_np"><img src="@/assets/images/nova_poshta_logo.jpg" alt=""></div>
-                  <div class="delivery_list_image_delivery"><img src="@/assets/images/delivery_logo_4.jpg" alt=""></div>
-                  <div class="delivery_list_image_justin"><img src="@/assets/images/justin_logo_2.png" alt=""></div>
-                  <div class="delivery_list_image_ukrposhta"><img src="@/assets/images/ukrposhta_logo.png" alt=""></div>
-=======
                   <h1>Доставка:</h1>
                   <div class="delivery_info_paragraphs">
                     <p>
@@ -98,26 +72,10 @@
                   <div class="delivery_list_image_ukrposhta">
                     <img src="@/assets/images/ukrposhta_logo.png" alt="" />
                   </div>
->>>>>>> 1576e637f34e031bcba0970694e953bfd9ea14dd
                 </div>
               </div>
               <div class="payment_container">
                 <div class="payment_info">
-<<<<<<< HEAD
-                  <h1>Способи оплати:</h1>
-                </div>
-                <div class="payment_paragraphs">
-<p>Співпрацюючи з нами ви можете оплатити товар любим зручним ля вас способом. Ми віправляємо без обовя'язкової передоплати, але при потребі є можливість сплатити продукцію в повному обсязі до відправки (економія 2% при користуванні послугами Нової Пошти). Також ми відкриті для співпраці системобю "Дропшиппінг". </p>
-                </div>
-              <div class="payment_container_list">
-                <ul class="payment_list">
-                  <li><img src="@/assets/icons/circle_icon.png" alt="">Готівка</li>
-                  <li><img src="@/assets/icons/circle_icon.png" alt="">Безготівковий розрахунок</li>
-                  <li><img src="@/assets/icons/circle_icon.png" alt="">Передоплата на крату</li>
-                  <li><img src="@/assets/icons/circle_icon.png" alt="">Післяплата "Наложений платіж"(Нова Пошта)</li>
-                </ul>
-              </div>
-=======
                   <h1>Оплата</h1>
                 </div>
                 <div class="payment_paragraphs">
@@ -156,7 +114,6 @@
                     </li>
                   </ul>
                 </div>
->>>>>>> 1576e637f34e031bcba0970694e953bfd9ea14dd
               </div>
             </div>
           </div>
