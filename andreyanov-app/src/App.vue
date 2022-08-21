@@ -1,4 +1,6 @@
 <template>
+  <!-- <meta name="viewport" content="width = device-width" /> -->
+  <meta name="viewport" content="width = 1200" />
   <div class="main">
     <!-- <div class="container">
       <div class="main_wrapper">
@@ -74,6 +76,7 @@ export default {
 html {
   body {
     margin-top: 0px;
+    min-width: 1200px;
   }
 }
 

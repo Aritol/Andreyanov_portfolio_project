@@ -133,8 +133,10 @@ export default {
 @import "@/assets/styles/null.scss";
 
 .dialog_popup_container {
-  position: fixed;
+  position: absolute;
   top: 0;
+  bottom: 0;
+  right: 0;
   left: 0;
   height: 100%;
   width: 100%;
@@ -182,17 +184,30 @@ export default {
 }
 
 .container {
-  width: 100%;
-  height: 100%;
+  // position: fixed;
+  // width: 100%;
+  // height: 100%;
+  max-width: 595;
+  max-height: 745;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.85);
-  position: absolute;
+  position: fixed;
+
+  display: flex;
+  // align-items: center;
   .main_wrapper {
+    margin-bottom: 50px;
+    // top: 30%;
+
+    margin: auto;
     width: 100%;
     max-width: 595px;
-    height: 770px;
-    margin: 0 auto;
-    margin-top: 80px;
+    max-height: 770px;
+
     background: #fff;
     box-shadow: #fff 0 0 0;
     border-radius: 2px;
@@ -281,10 +296,13 @@ export default {
           .buttons_container {
             margin-left: -40px;
             margin-top: 40px;
+            margin-bottom: 25px;
             text-align: center;
             button {
               border-radius: 5px;
               font-size: 26px;
+              // width: 100%;
+              // height: 100%;
               width: 360px;
               height: 70px;
               background: #ed8414;

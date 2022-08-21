@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="popup_container" v-if="successfulBuyingPopupVisible">
+      <successful-buying-popup
+        @closePopup="successfulBuyingPopupVisible = false"
+      />
+    </div>
     <div class="container">
       <div class="main_wrapper">
         <div class="side_menu_container">
@@ -44,18 +49,21 @@
 import { Buffer } from "buffer";
 import ProductItem from "./ProductItem.vue";
 import SideMenu from "@/components/SideMenu";
+import successfulBuyingPopup from "@/components/popups/successfulBuyingPopup.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "ProductsList",
   components: {
     ProductItem,
     SideMenu,
+    successfulBuyingPopup,
   },
 
   data() {
     return {
       title: null,
       cart: [],
+      successfulBuyingPopupVisible: false,
     };
   },
 
@@ -117,9 +125,10 @@ export default {
       localStorage.removeItem("cart");
       localStorage.setItem("cart", JSON.stringify(this.cart));
     },
-    // onBuyClick(productToLocalStorage) {
+
     onBuyClick(product) {
       this.AddProductToCart(product);
+      this.successfulBuyingPopupVisible = true;
       // if (this.cart.length) {
       //   let isProductExist = false;
       //   this.cart.map(function (item) {
@@ -181,6 +190,15 @@ export default {
 @import "@/assets/styles/fonts.scss";
 @import "@/assets/styles/null.scss";
 
+.popup_container {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
 .container {
   width: 100%;
   max-width: 1200px;

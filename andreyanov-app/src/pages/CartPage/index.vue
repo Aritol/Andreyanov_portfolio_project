@@ -1,4 +1,5 @@
 <template>
+  <meta name="viewport" content="width = 1200" />
   <div>
     <div class="confirm_order_popup_container" v-if="confirmOrderPopupVisible">
       <div class="confirm_order_popup_wrapper">
@@ -122,68 +123,70 @@
               :key="cartItem._id"
               class="cart_product_container"
             > -->
-            <div
-              class="cart_product_container"
-              v-for="(cartItem, index) in getCartList"
-              :key="cartItem._id"
-            >
-              <div class="cart_product_container_wrapper">
-                <div class="product_img">
-                  <!-- <img src="@/assets/images/test_gold.jpg" alt="" /> -->
-                  <img :src="getImgSrc(cartItem.photo)" alt="" />
-                </div>
-                <div class="product_information_container">
-                  <div class="product_title">
-                    <!-- <h2>
+            <transition-group name="cart_list">
+              <div
+                class="cart_product_container"
+                v-for="(cartItem, index) in getCartList"
+                :key="cartItem._id"
+              >
+                <div class="cart_product_container_wrapper">
+                  <div class="product_img">
+                    <!-- <img src="@/assets/images/test_gold.jpg" alt="" /> -->
+                    <img :src="getImgSrc(cartItem.photo)" alt="" />
+                  </div>
+                  <div class="product_information_container">
+                    <div class="product_title">
+                      <!-- <h2>
                       Напівсинтетичне моторне масло MOL Dynamic Max 10W-40 - 1 л
                     </h2> -->
-                    <h2>
-                      {{ cartItem.name }}
-                    </h2>
+                      <h2>
+                        {{ cartItem.name }}
+                      </h2>
+                    </div>
+                    <div class="product_availability">
+                      <p>{{ cartItem.availability }}</p>
+                    </div>
+                    <div class="product_price">
+                      <p>{{ cartItem.price }}</p>
+                    </div>
                   </div>
-                  <div class="product_availability">
-                    <p>{{ cartItem.availability }}</p>
+                  <div class="product_count_container">
+                    <div class="product_count_title">
+                      <h1>Кількість шт.</h1>
+                    </div>
+                    <div class="product_counter">
+                      <button class="btn_minus" @click="decrement(index)">
+                        <p>-</p>
+                      </button>
+                      <input
+                        type="number"
+                        min="1"
+                        max="300"
+                        :value="cartItem.quantity"
+                      />
+                      <button class="btn_plus" @click="increment(index)">
+                        +
+                      </button>
+                    </div>
                   </div>
-                  <div class="product_price">
-                    <p>{{ cartItem.price }}</p>
+                  <div class="product_sum_container">
+                    <div class="product_sum_title">
+                      <h1>Сума</h1>
+                    </div>
+                    <div class="product_sum">
+                      <p>{{ cartItem.price * cartItem.quantity }} грн</p>
+                    </div>
                   </div>
-                </div>
-                <div class="product_count_container">
-                  <div class="product_count_title">
-                    <h1>Кількість шт.</h1>
-                  </div>
-                  <div class="product_counter">
-                    <button class="btn_minus" @click="decrement(index)">
-                      <p>-</p>
-                    </button>
-                    <input
-                      type="number"
-                      min="1"
-                      max="300"
-                      :value="cartItem.quantity"
-                    />
-                    <button class="btn_plus" @click="increment(index)">
-                      +
-                    </button>
-                  </div>
-                </div>
-                <div class="product_sum_container">
-                  <div class="product_sum_title">
-                    <h1>Сума</h1>
-                  </div>
-                  <div class="product_sum">
-                    <p>{{ cartItem.price }} грн</p>
-                  </div>
-                </div>
-                <div class="button_remove_container">
-                  <div class="button_remove_container_wrapper">
-                    <button @click="onRemoveClick(index)">
-                      <img src="@/assets/icons/icon_cancel.png" alt="" />
-                    </button>
+                  <div class="button_remove_container">
+                    <div class="button_remove_container_wrapper">
+                      <button @click="onRemoveClick(index)">
+                        <img src="@/assets/icons/icon_cancel.png" alt="" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </transition-group>
 
             <div class="final_sum_container" v-if="getCartList.length > 0">
               <div class="final_sum_title">
@@ -232,6 +235,10 @@ export default {
 
   computed: {
     ...mapGetters("cart", ["getCartList"]),
+
+    // itemTotalCost(){
+
+    // }
 
     cartTotalCost() {
       let result = [];
@@ -356,20 +363,26 @@ export default {
   color: #333;
   position: fixed;
   top: 0;
+  bottom: 0;
+  right: 0;
   left: 0;
   height: 100%;
   width: 100%;
+  // max-width: 700px;
+  // max-height: 800px;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
   // position: absolute;
   .confirm_order_popup_wrapper {
-    margin: 0 auto;
+    margin: auto;
     background: #fff;
     box-shadow: #fff 0 0 0;
     width: 100%;
+    height: 100%;
     max-width: 700px;
-    height: 820px;
-    margin-top: 60px;
+    max-height: 820px;
+    // margin-top: 60px;
     border-radius: 2px;
     .popup_content {
       .close_img_container {
@@ -445,6 +458,8 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
+  // max-width: 700px;
+  // max-height: 800px;
   z-index: 25;
   background-color: rgba(0, 0, 0, 0.85);
   // position: absolute;
@@ -452,9 +467,9 @@ export default {
     margin: 0 auto;
     background: #fff;
     box-shadow: #fff 0 0 0;
-    width: 100%;
+    // width: 100%;
     max-width: 600px;
-    height: 230px;
+    max-height: 230px;
     margin-top: 350px;
     border-radius: 2px;
     .popup_wrapper {
@@ -547,6 +562,16 @@ export default {
 
       .cart_products {
         padding-bottom: 50px;
+
+        .cart_list-enter-active,
+        .cart_list-leave-active {
+          transition: all 0.5s ease;
+        }
+        .cart_list-enter-from,
+        .cart_list-leave-to {
+          opacity: 0;
+          transform: translateX(30px);
+        }
         .cart_product_container {
           margin: 20px 0px 0px 0px;
 

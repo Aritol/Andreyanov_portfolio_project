@@ -216,12 +216,15 @@ export default {
 @import "@/assets/styles/fonts.scss";
 
 .popup_container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
+  // right: 0;
+  // left: 0;
+  // height: 100%;
+  // min-height: 100%;
+  // width: 100%;
+  // z-index: 10;
 }
 
 .container {

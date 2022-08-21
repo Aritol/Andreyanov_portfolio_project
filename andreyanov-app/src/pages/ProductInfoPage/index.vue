@@ -6,9 +6,15 @@
         conditionPopupVisible ||
         contactPopupVisible ||
         schedulePopupVisible ||
-        returnPopupVisible
+        returnPopupVisible ||
+        successfulBuyingPopupVisible
       "
     >
+      <div class="successful_buying_popup" v-if="successfulBuyingPopupVisible">
+        <successful-buying-popup
+          @closePopup="successfulBuyingPopupVisible = false"
+        />
+      </div>
       <div class="condition_popup">
         <conditions-popup
           @onClosePopup="onClosePopup"
@@ -70,7 +76,7 @@
                     <p>{{ productData.price }} грн</p>
                   </div>
                   <div class="button_buy_container">
-                    <button @click="log">
+                    <button @click="buyProduct">
                       <img src="@/assets/icons/cart_icon-white.png" alt="" />
                       <p>Купити</p>
                     </button>
@@ -147,6 +153,7 @@ import conditionsPopup from "@/components/popups/conditionsPopup.vue";
 import contactPopup from "@/components/popups/contactPopup.vue";
 import schedulePopup from "@/components/popups/schedulePopup.vue";
 import returnDetailPopup from "@/components/popups/returnDetailPopup.vue";
+import successfulBuyingPopup from "@/components/popups/successfulBuyingPopup.vue";
 
 import { mapActions } from "vuex";
 export default {
@@ -158,13 +165,16 @@ export default {
     contactPopup,
     schedulePopup,
     returnDetailPopup,
+    successfulBuyingPopup,
   },
 
   data() {
     return {
       productData: {},
+
       rawPhotoData: null,
 
+      successfulBuyingPopupVisible: false,
       conditionPopupVisible: false,
       contactPopupVisible: false,
       schedulePopupVisible: false,
@@ -187,6 +197,7 @@ export default {
 
   methods: {
     ...mapActions("products", ["getProductById"]),
+    ...mapActions("cart", ["loadFromLocalStorage", "AddProductToCart"]),
 
     getImgSrc(photo) {
       let binary = Buffer.from(photo.data);
@@ -227,6 +238,14 @@ export default {
     onSchedulePopupClose() {
       this.schedulePopupVisible = false;
     },
+    buyProduct() {
+      const productDataToLocalStorage = {
+        quantity: 1,
+        ...this.productData,
+      };
+      this.AddProductToCart(productDataToLocalStorage);
+      this.successfulBuyingPopupVisible = true;
+    },
   },
 
   async mounted() {
@@ -264,6 +283,8 @@ export default {
   height: 100%;
   width: 100%;
   z-index: 10;
+  .successful_buying_popup {
+  }
   .condition_popup {
   }
 }
