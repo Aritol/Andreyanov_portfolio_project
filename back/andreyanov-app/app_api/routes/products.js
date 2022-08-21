@@ -4,7 +4,9 @@ var router = express.Router();
 const productsController = require("../controllers/products");
 
 /* GET список книг. */
-router.get("/", productsController.getList);
+
+router.get("/:category/:id", productsController.getById);
+router.get("/:category", productsController.getList);
 
 /* GET видалення книги за id. */
 router.delete("/", productsController.delete);
@@ -16,6 +18,5 @@ router.post("/", productsController.add);
 router.put("/", productsController.update);
 
 /* Відображення інформації про одну книгу */
-router.get("/:id", productsController.getById);
 
 module.exports = router;

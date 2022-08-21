@@ -37,35 +37,49 @@
                       Продукти
                       <img src="@/assets/icons/down_arrow_white.png" alt="" />
                       <ul class="nav_sub_menu">
-                        <router-link to="/category/legkovi"
-                          ><li>
+                        <router-link to=""
+                          ><li @click="ToLegkovi">
                             Моторні масла для легкових автомобілів
                           </li></router-link
                         >
                         <router-link to=""
-                          ><li>
+                          ><li @click="ToCommerce">
                             Моторні масла для коммерційних автомобілів
                           </li></router-link
                         >
                         <router-link to=""
-                          ><li>Гідравлічне масло</li></router-link
+                          ><li @click="ToHydraulics">
+                            Гідравлічне масло
+                          </li></router-link
                         >
                         <router-link to=""
-                          ><li>Трансмісійне масло</li></router-link
+                          ><li @click="ToTransmisson">
+                            Трансмісійне масло
+                          </li></router-link
                         >
                         <router-link to=""
-                          ><li>Охолоджуючі рідини</li></router-link
+                          ><li @click="ToCold">
+                            Охолоджуючі рідини
+                          </li></router-link
                         >
                         <router-link to=""
-                          ><li>Масло для мото групи</li></router-link
+                          ><li @click="ToMotoGroup">
+                            Масло для мото групи
+                          </li></router-link
                         >
                         <router-link to=""
-                          ><li>Масло для садового обладнання</li></router-link
+                          ><li @click="ToGarden">
+                            Масло для садового обладнання
+                          </li></router-link
                         >
                         <router-link to=""
-                          ><li>Змажчувальні матеріали</li></router-link
+                          ><li @click="ToLubricants">
+                            Змажчувальні матеріали
+                          </li></router-link
                         >
-                        <router-link to=""><li>Автохімія</li></router-link>
+                        <router-link to=""
+                          ><li @click="ToAutohim">Автохімія</li></router-link
+                        >
                       </ul>
                     </li></router-link
                   >
@@ -82,7 +96,17 @@
 
                   <router-link to="/about"><li>Про нас</li></router-link>
                   <router-link to="/contact"><li>Контакти</li></router-link>
-                  <router-link to="/cart"><li>Корзина</li></router-link>
+
+                  <li v-if="!authorized" @click="onCartItemClick">
+                    Корзина
+                    <p class="cart_items_counter">
+                      {{ cartListCounter }}
+                    </p>
+                  </li>
+                  <li v-if="authorized" @click="onOrderItemClick">
+                    Замовлення
+                  </li>
+                  <li v-if="authorized" @click="onResponseListClick">Листи</li>
                 </ul>
               </div>
             </div>
@@ -95,9 +119,108 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "NavigationMenu",
+  data() {
+    return {
+      path: "",
+      cartItemsAmount: 0,
+      cartItems: [],
+    };
+  },
+
   components: {},
+
+  computed: {
+    ...mapGetters("auth", ["authorized"]),
+    ...mapGetters("cart", ["getCartList"]),
+    cartListCounter() {
+      if (this.getCartList) {
+        return this.getCartList.length;
+      }
+      return 0;
+    },
+
+    // cartItemsCounter(){
+    //   return this.cartItemsAmount = this.getCartListAmount;
+    // },
+  },
+
+  methods: {
+    // ...mapActions("cart", ["loadFromLocalStorage"]),
+    onCartItemClick() {
+      this.$router.push({ path: "/cart" });
+    },
+    onOrderItemClick() {
+      this.$router.push({ name: "ordersPage" });
+    },
+
+    onResponseListClick() {
+      this.$router.push({ name: "lettersPage" });
+    },
+
+    ToLegkovi() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "legkovi" },
+      });
+    },
+
+    ToCommerce() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "commerce" },
+      });
+    },
+    ToHydraulics() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "hydraulics" },
+      });
+    },
+    ToTransmisson() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "transmisson" },
+      });
+    },
+    ToCold() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "cold" },
+      });
+    },
+    ToMotoGroup() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "motoGroup" },
+      });
+    },
+    ToGarden() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "garden" },
+      });
+    },
+    ToLubricants() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "lubricants" },
+      });
+    },
+    ToAutohim() {
+      this.$router.push({
+        name: "productsList",
+        params: { category: "autohim" },
+      });
+    },
+  },
+
+  async mounted() {
+    // this.cartItems = await this.loadFromLocalStorage();
+  },
 };
 </script>
 
@@ -159,34 +282,83 @@ export default {
       ul {
         display: flex;
         padding-left: -20px;
+        li:last-child {
+          display: flex;
+        }
+
+        a:hover {
+          background-color: #069534;
+          cursor: pointer;
+        }
+
         & li {
-          padding: 20px 20px 20px 20px;
+          padding: 21px 20px 19px 20px;
           font-size: 18px;
           color: white;
           // font-family: ;
+
+          // &:hover {
+          //   background-color: #069534;
+          //   cursor: pointer;
+          // }
+
+          .nav_sub_menu {
+            position: absolute;
+            margin: 36px 0 0 -20.5px;
+            display: block;
+            // display: none;
+            z-index: 10;
+            visibility: hidden;
+
+            background-color: #046423;
+            transition: all 225ms ease-in-out;
+            & li {
+              font-size: 16px;
+            }
+          }
+
+          .cart_items_counter {
+            background: #66c571;
+            // align-items: center;
+            text-align: center;
+            margin-left: 10px;
+            border-radius: 50%;
+            height: 18px;
+            width: 24px;
+          }
 
           &:hover {
             background-color: #069534;
             cursor: pointer;
           }
-
+        }
+      }
+      .menu_item_for_dropdown {
+        &:hover {
           .nav_sub_menu {
-            position: absolute;
-            margin: 20.2px 0 0 -20.5px;
-            // display: block;
-            display: none;
-            background-color: #046423;
-            transition-duration: 500ms;
-            & li {
-              font-size: 16px;
+            // transition: all 0.8s;
+            // transition: all 225ms ease-in-out;
+            display: block;
+            visibility: visible;
+
+            box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+
+            li {
+              &:hover {
+                // transition: all 0.8s;
+                background-color: #069534;
+              }
             }
           }
         }
       }
-      .menu_item_for_dropdown:hover .nav_sub_menu {
-        display: block;
 
-        box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+      .menu_item_for_dropdown {
+        img {
+          width: 20px;
+          padding-top: 2px;
+          padding-left: 4px;
+        }
       }
 
       .menu_item_for_dropdown {
