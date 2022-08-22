@@ -376,6 +376,10 @@ export default {
   // position: absolute;
   .confirm_order_popup_wrapper {
     margin: auto;
+    // margin-top: 3%;
+    // margin-bottom: 3%;
+    overflow: auto;
+    // margin-left: 33%;
     background: #fff;
     box-shadow: #fff 0 0 0;
     width: 100%;

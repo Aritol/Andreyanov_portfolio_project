@@ -207,6 +207,7 @@ export default {
     width: 100%;
     max-width: 595px;
     max-height: 770px;
+    overflow: auto;
 
     background: #fff;
     box-shadow: #fff 0 0 0;
