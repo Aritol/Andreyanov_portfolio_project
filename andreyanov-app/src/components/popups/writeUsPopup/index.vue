@@ -187,8 +187,8 @@ export default {
   // position: fixed;
   // width: 100%;
   // height: 100%;
-  max-width: 595;
-  max-height: 745;
+  // max-width: 595;
+  // max-height: 745;
   top: 0;
   bottom: 0;
   right: 0;
@@ -196,18 +196,22 @@ export default {
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.85);
   position: fixed;
+  overflow: auto;
 
-  display: flex;
   // align-items: center;
   .main_wrapper {
-    margin-bottom: 50px;
-    // top: 30%;
+    // margin-bottom: 50px;
+    // margin: auto;
+    // width: 100%;
+    // margin-top:3%;
+    // margin-bottom:10%;
+    // max-width: 595px;
+    // max-height: 770px;
 
     margin: auto;
     width: 100%;
     max-width: 595px;
     max-height: 770px;
-    overflow: auto;
 
     background: #fff;
     box-shadow: #fff 0 0 0;
@@ -297,7 +301,7 @@ export default {
           .buttons_container {
             margin-left: -40px;
             margin-top: 40px;
-            margin-bottom: 25px;
+            padding-bottom: 40px;
             text-align: center;
             button {
               border-radius: 5px;

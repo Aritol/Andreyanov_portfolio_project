@@ -360,6 +360,13 @@ export default {
           padding-left: 4px;
         }
       }
+
+      .menu_item_for_dropdown {
+        img {
+          width: 20px;
+          padding-top: 2px;
+        }
+      }
     }
   }
 }

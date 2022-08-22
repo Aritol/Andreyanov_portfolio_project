@@ -1,4 +1,4 @@
-<template>
+s<template>
   <div>
     <authorization-header />
     <!-- <div class="loading_container" v-if="isLoading"><p>Завантаження...</p></div> -->
