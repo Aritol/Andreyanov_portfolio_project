@@ -29,18 +29,20 @@ axios.interceptors.response.use(
 );
 //---------------------------
 router.beforeEach((to, from, next) => {
-  //   let check =
-  //     !store.getters["auth/isAuthenticated"]() &&
-  //     !["/login", "/signup"].includes(to.path);
-  //   console.log(check);
-  //   if (check) {
-  //     // Недопускаємо до захищених роутів, якщо немає токена
+  let check =
+    !store.getters["auth/isAuthenticated"]() &&
+    ["/signup", "/products/edit"].includes(to.path);
+  console.log(check);
+  if (check) {
+    // Недопускаємо до захищених роутів, якщо немає токена
 
-  //     next({ path: "/login" });
-  //     return;
-  //   } else {
-  next();
-  //   }
+    next({ path: "/" });
+    return;
+  } else {
+    next();
+  }
+
+  // next();
 });
 
 createApp(App).use(router).use(store).mount("#app");

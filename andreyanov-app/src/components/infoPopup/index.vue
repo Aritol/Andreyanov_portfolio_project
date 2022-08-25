@@ -3,10 +3,21 @@
     <div class="container" ref="container">
       <div class="main_wrapper">
         <div class="popup_block">
-          <img src="@/assets/icons/close_icon.png" alt="" @click="onOkClick" />
+          <div class="close_img_container">
+            <img
+              src="@/assets/icons/icon_close_grey.png"
+              alt=""
+              @click="onOkClick"
+            />
+          </div>
           <div class="popup_content">
-            <h1>
+            <h1 v-if="!dataError">
               {{ title }}
+            </h1>
+            <h1 v-else>
+              Ви заповнили не всі обов'язкові поля,
+              <p>будь-ласка заповніть всі поля позначені<span>*</span></p>
+              <p>та оберіть фото</p>
             </h1>
             <div class="buttons_container">
               <button @click="onOkClick">OK</button>
@@ -26,6 +37,7 @@ export default {
     title: null,
     btnLabel: null,
     productData: {},
+    dataError: null,
   },
 
   methods: {
@@ -33,18 +45,14 @@ export default {
       this.$emit("infoPopupClose");
     },
     onOkClick() {
-      console.log(this.productData);
-      //   if (this.$route.params.id) {
-      //     let categoryParameter = "";
-      //     this.$router.push({
-      //       name: "productsList",
-      //       params: { categoryParameter },
-      //     });
-
-      this.$router.push({
-        name: "productsList",
-        params: { category: this.productData.category },
-      });
+      if (this.dataError) {
+        this.$emit("infoPopupClose");
+      } else {
+        this.$router.push({
+          name: "productsList",
+          params: { category: this.productData.category },
+        });
+      }
       //   }
     },
 
@@ -79,9 +87,14 @@ export default {
     .popup_block {
       height: 400px;
 
-      img {
-        margin-left: 850px;
-        cursor: pointer;
+      .close_img_container {
+        text-align: right;
+
+        img {
+          width: 35px;
+          cursor: pointer;
+          margin: 4px;
+        }
       }
       border-radius: 15px;
       margin-top: 300px;
@@ -92,10 +105,20 @@ export default {
         h1 {
           margin-top: 40px;
           font-size: 40px;
+          p {
+            margin-top: 10px;
+            font-size: 24px;
+            span {
+              color: rgb(209, 55, 55);
+              font-size: 36px;
+              font-weight: bold;
+              padding-left: 4px;
+            }
+          }
         }
 
         .buttons_container {
-          margin-top: 160px;
+          margin-top: 100px;
           button {
             font-size: 26px;
             font-weight: bold;

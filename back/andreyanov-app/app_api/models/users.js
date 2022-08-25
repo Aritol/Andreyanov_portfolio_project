@@ -4,8 +4,14 @@ const crypto = require("crypto");
 const { Schema } = mongoose;
 
 const UsersSchema = new Schema({
-  email: String,
-  name: String,
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    minlength: 3,
+    maxlength: 100,
+  },
+  name: { type: String, required: true, minlength: 3, maxlength: 100 },
   hash: String, //поле, де буде зберігатися хеш пароля
   salt: String, //поле, де буде зберігатися ключ
 });

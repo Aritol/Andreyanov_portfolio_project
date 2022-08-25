@@ -2,10 +2,12 @@
   <div>
     <div class="popup_container" v-if="infoPopupVisible">
       <info-Popup
+        @infoPopupClose="onInfoPopupClose"
         v-if="infoPopupVisible"
         class="popup"
         :productData="product"
         :title="popupTitle"
+        :dataError="savingDataError"
       />
     </div>
     <div class="container">
@@ -22,17 +24,18 @@
               <form action="">
                 <div class="img_container">
                   <label>
-                    Фото продукту
+                    Фото продукту<span>*</span>
+                    <p>(в розширенні 500x500)</p>
                     <input type="file" @input="createLogoImage" />
                   </label>
                   <img id="img" :src="photoSrc" alt="" v-if="product.photo" />
                 </div>
                 <div class="input_title_container">
-                  <label for="">Назва продукту:</label>
+                  <label for="">Назва продукту<span>*</span>:</label>
                   <input type="text" required v-model="product.name" />
                 </div>
                 <div class="availability_container">
-                  <label for="">Наявність:</label>
+                  <label for="">Наявність<span>*</span>: </label>
                   <select name="" id="select_group">
                     <option
                       id="option_item1"
@@ -58,11 +61,11 @@
                   </select>
                 </div>
                 <div class="input_price_container">
-                  <label for="">Ціна:</label>
+                  <label for="">Ціна<span>*</span>:</label>
                   <input type="number" required v-model="product.price" />
                 </div>
                 <div class="input_desc_first_paragraph_container">
-                  <label for="">Опис, перший параграф:</label>
+                  <label for="">Опис, перший параграф<span>*</span>:</label>
                   <textarea
                     name=""
                     id=""
@@ -73,7 +76,7 @@
                   ></textarea>
                 </div>
                 <div class="input_desc_second_paragraph_container">
-                  <label for="">Опис, другий параграф:</label>
+                  <label for="">Опис, другий параграф<span>*</span>:</label>
 
                   <textarea
                     name=""
@@ -85,7 +88,7 @@
                   ></textarea>
                 </div>
                 <div class="input_category_container">
-                  <label for="">Категорія:</label>
+                  <label for="">Категорія<span>*</span>:</label>
 
                   <select name="" id="select_category">
                     <option id="option_item_category" class="opt_item">
@@ -118,7 +121,7 @@
                   </select>
                 </div>
                 <div class="input_characteristic_container">
-                  <label for="">Характеристики:</label>
+                  <label for="">Характеристики<span>*</span>:</label>
                   <input
                     type="text"
                     required
@@ -127,7 +130,7 @@
                 </div>
 
                 <div class="license_container">
-                  <label for="">Введіть допуски через кому</label>
+                  <label for="">Введіть допуски через кому<span>*</span></label>
                   <textarea
                     name=""
                     id=""
@@ -139,7 +142,7 @@
                 </div>
 
                 <div class="buttons_container">
-                  <button type="submit" @click="onBtnClick">
+                  <button @click="onBtnClick">
                     {{ recivedId }}
                   </button>
                 </div>
@@ -174,6 +177,7 @@ export default {
       licenseArray: [],
       infoPopupVisible: false,
       popupTitle: "",
+      savingDataError: null,
     };
   },
 
@@ -267,28 +271,50 @@ export default {
         default:
           break;
       }
-      try {
-        if (!this.$route.params.id) {
-          await this.addProduct(this.product);
-          this.infoPopupVisible = true;
-        } else {
-          await this.updateProduct(this.product);
-          this.infoPopupVisible = true;
+      if (
+        this.product.photo &&
+        this.product.name &&
+        this.product.category &&
+        this.product.price &&
+        this.product.descriptionFirstParagraph &&
+        this.product.descriptionSecondParagraph &&
+        this.product.availability &&
+        this.product.characteristics &&
+        this.product.license
+      ) {
+        this.savingDataError = false;
+        try {
+          if (!this.$route.params.id) {
+            await this.addProduct(this.product);
+            this.infoPopupVisible = true;
+          } else {
+            await this.updateProduct(this.product);
+            this.infoPopupVisible = true;
+          }
+
+          if (this.$route.params.id) {
+            this.popupTitle = "Дані товара оновлені успішно";
+          } else {
+            this.popupTitle = "Товар додано успішно";
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-      if (this.$route.params.id) {
-        this.popupTitle = "Дані товара оновлені успішно";
       } else {
-        this.popupTitle = "Товар додано успішно";
+        this.savingDataError = true;
+        this.infoPopupVisible = true;
       }
 
       // this.infoPopupVisible = true;
     },
+
+    onInfoPopupClose() {
+      this.infoPopupVisible = false;
+    },
   },
 
   async mounted() {
+    // location.reload();
     let searchData = {
       category: this.$route.params.category,
       id: this.$route.params.id,
@@ -384,8 +410,19 @@ export default {
         .edit_area_wrapper {
           color: #444443;
 
+          span {
+            font-size: 22px;
+            color: #d8093a;
+          }
+
           .img_container {
             font-size: 22px;
+            p {
+              display: inline-block;
+              font-size: 14px;
+              text-decoration: underline;
+              padding-right: 5px;
+            }
             img {
               margin-top: 15px;
               display: block;

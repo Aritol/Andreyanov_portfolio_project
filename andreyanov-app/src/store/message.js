@@ -107,6 +107,32 @@ const store = {
           );
       });
     },
+
+    getMessageById({ commit }, messageId) {
+      commit("setLoading", true);
+      commit("setError", null);
+      return new Promise((resolve, reject) => {
+        axios
+          .get(apiEndpoints.messages.getMessageById(messageId))
+          .then(
+            //Якщо добре
+            (res) => res.data
+          )
+          .then((resData) => {
+            if (resData.success) resolve(resData.data);
+            else throw new Error("Fatch failed!");
+          })
+          .catch((err) => {
+            //Якщо погано
+            commit("setError", err);
+            reject(err);
+          })
+          .finally(
+            //Завжди
+            () => commit("setLoading", false)
+          );
+      });
+    },
   },
   getters: {
     messageList: (state) => state.messagesList,

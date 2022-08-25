@@ -17,6 +17,7 @@ import OrdersPage from "@/pages/OrdersPage";
 import OrderInfo from "@/pages/OrderInfo";
 import LettersPage from "@/pages/LettersPage";
 import LetterInfoPage from "@/pages/LettersPage/LetterInfoPage";
+import CreateOrderPage from "@/pages/CreateOrderPage";
 
 const routes = [
   { path: "/", component: Home, name: "home" },
@@ -52,6 +53,11 @@ const routes = [
     path: "/letterInfo/:id",
     component: LetterInfoPage,
     name: "letterInfoPage",
+  },
+  {
+    path: "/createOrder",
+    component: CreateOrderPage,
+    name: "createOrderPage",
   },
 ];
 

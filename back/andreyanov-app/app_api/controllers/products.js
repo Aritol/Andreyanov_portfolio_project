@@ -72,6 +72,11 @@ module.exports.add = function (req, res, next) {
   form.on("end", function (d) {
     console.log("3333333333");
     num++;
+
+    // if () {
+
+    // }
+    // try {
     //Помилка модуля (викликається двічі)
     if (num == 1) {
       //Збереження моделі і відключення від бази даних
@@ -86,6 +91,10 @@ module.exports.add = function (req, res, next) {
         sendJSONResponse(res, 201, { success: true, data: savedProduct });
       });
     }
+    // } catch (error) {
+    //   console.log("errrrrror");
+
+    // }
   });
 };
 

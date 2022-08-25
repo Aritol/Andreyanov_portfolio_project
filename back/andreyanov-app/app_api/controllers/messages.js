@@ -18,7 +18,6 @@ module.exports.getList = function (req, res) {
       });
     else {
       sendJSONResponse(res, 200, { success: true, data: messages });
-      console.log(messages);
     }
   });
 };
@@ -28,7 +27,6 @@ module.exports.add = function (req, res, next) {
   console.log(req.body);
 
   let nowDate = new Date();
-  // const day =
 
   let message = new MessageModel({
     userName: req.body.userName,
@@ -41,9 +39,10 @@ module.exports.add = function (req, res, next) {
   });
   message.save(function (err, savedMessage) {
     if (err) {
+      console.log(err);
       sendJSONResponse(res, 500, {
         success: false,
-        err: { msg: "Saving faild!" },
+        err: { msg: "Saving faild! some field is empty" },
       });
       return;
     }

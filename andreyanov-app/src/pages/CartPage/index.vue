@@ -295,6 +295,7 @@ export default {
 
     order() {
       this.confirmOrderPopupVisible = true;
+      // this.$router.push({ name: "createOrderPage" });
     },
 
     onPopupOk() {

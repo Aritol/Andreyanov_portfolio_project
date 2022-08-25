@@ -45,13 +45,13 @@
                 <h2>{{ userData.userName }}</h2>
                 <p>{{ userData.day }} {{ stringMonth }} {{ userData.year }}</p>
               </div>
-              <div class="delete_button_container">
+              <!-- <div class="delete_button_container">
                 <button @click="onDelete">
                   <p>Видалити</p>
                   <span></span>
                   <img src="@/assets/icons/remove_letter_icon.png" alt="" />
                 </button>
-              </div>
+              </div> -->
             </div>
             <div class="text_container">
               <p>{{ userData.message }}</p>
@@ -62,6 +62,13 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="delete_button_container">
+      <button @click="onDelete">
+        <p>Видалити</p>
+        <span></span>
+        <img src="@/assets/icons/remove_letter_icon.png" alt="" />
+      </button>
     </div>
   </div>
 </template>
@@ -302,38 +309,38 @@ export default {
               width: 300px;
             }
           }
-          .delete_button_container {
-            margin-left: 355px;
-            button {
-              display: flex;
-              width: 115px;
-              height: 40px;
-              background-color: #c0392b;
-              color: #fff;
-              border-radius: 5px;
-              font-size: 16px;
-              p {
-                font-size: 14px;
-                margin-left: 12px;
-                margin-top: 12px;
-                height: 20px;
-              }
-              span {
-                margin-top: 5px;
-                border-right: 2px solid #a53125;
-                height: 30px;
-                margin-left: 4px;
-              }
-              img {
-                margin-top: 7px;
-                margin-left: 2px;
-                width: 25px;
-              }
-              &:hover {
-                background-color: #912f24;
-              }
-            }
-          }
+          // .delete_button_container {
+          //   margin-left: 355px;
+          //   button {
+          //     display: flex;
+          //     width: 115px;
+          //     height: 40px;
+          //     background-color: #c0392b;
+          //     color: #fff;
+          //     border-radius: 5px;
+          //     font-size: 16px;
+          //     p {
+          //       font-size: 14px;
+          //       margin-left: 12px;
+          //       margin-top: 12px;
+          //       height: 20px;
+          //     }
+          //     span {
+          //       margin-top: 5px;
+          //       border-right: 2px solid #a53125;
+          //       height: 30px;
+          //       margin-left: 4px;
+          //     }
+          //     img {
+          //       margin-top: 7px;
+          //       margin-left: 2px;
+          //       width: 25px;
+          //     }
+          //     &:hover {
+          //       background-color: #912f24;
+          //     }
+          //   }
+          // }
         }
 
         .text_container {
@@ -355,6 +362,42 @@ export default {
           }
         }
       }
+    }
+  }
+}
+
+.delete_button_container {
+  position: relative;
+  top: -190px;
+  left: 83%;
+  // margin-left: 355px;
+  button {
+    display: flex;
+    width: 115px;
+    height: 40px;
+    background-color: #c0392b;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    p {
+      font-size: 14px;
+      margin-left: 12px;
+      margin-top: 12px;
+      height: 20px;
+    }
+    span {
+      margin-top: 5px;
+      border-right: 2px solid #a53125;
+      height: 30px;
+      margin-left: 4px;
+    }
+    img {
+      margin-top: 7px;
+      margin-left: 2px;
+      width: 25px;
+    }
+    &:hover {
+      background-color: #912f24;
     }
   }
 }

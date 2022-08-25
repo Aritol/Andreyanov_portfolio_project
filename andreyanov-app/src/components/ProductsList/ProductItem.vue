@@ -346,6 +346,7 @@ export default {
         border: 1px solid #d9d9d9;
         img {
           width: 275px;
+          height: 275px;
         }
 
         &:hover {

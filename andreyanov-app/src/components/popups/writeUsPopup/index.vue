@@ -208,15 +208,25 @@ export default {
     // max-width: 595px;
     // max-height: 770px;
 
-    margin: auto;
-    width: 100%;
-    max-width: 595px;
-    max-height: 770px;
+    // margin: auto;
+    // width: 100%;
+    // max-width: 595px;
+    // max-height: 770px;
 
-    background: #fff;
-    box-shadow: #fff 0 0 0;
-    border-radius: 2px;
+    // background: #fff;
+    // box-shadow: #fff 0 0 0;
+    // border-radius: 2px;
     .popup_container {
+      margin: auto;
+      width: 100%;
+      max-width: 595px;
+      // max-height: 770px;
+      margin-top: 80px;
+      margin-bottom: 50px;
+      background: #fff;
+      box-shadow: #fff 0 0 0;
+      border-radius: 2px;
+
       .close_img_container {
         text-align: right;
         img {

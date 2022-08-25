@@ -64,7 +64,6 @@ export default {
     },
 
     async submit() {
-      console.log("sub");
       try {
         const user = { email: this.email, password: this.password };
         const result = await this.login(user);

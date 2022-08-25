@@ -79,6 +79,7 @@ const store = {
           .then((res) => res.data)
           .then((data) => {
             commit("setAuthData", { ...data.user });
+            console.log(data);
             resolve(true);
           })
           .catch((err) => {
